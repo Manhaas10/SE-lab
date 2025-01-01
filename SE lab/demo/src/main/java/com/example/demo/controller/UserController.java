@@ -39,7 +39,6 @@ public class UserController {
 		if(User.getName().isEmpty()|| User.getEmail().isEmpty()){
 			model.addAttribute("errorMessage","Name and Email cannot be empty.");
 			return "error_file";
-
 		}
 		UserService.saveUser(User);
 		return "redirect:/";
