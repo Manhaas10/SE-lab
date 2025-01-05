@@ -42,4 +42,13 @@ public class UserServiceImpm implements UserService{
 	public void deleteUserById(Long id) {
 		this.UserRepository.deleteById(id);
 	}
+
+	@Override
+	public List<User> getUserByname(String name) {
+		// System.out.println("Service received name: " + name);
+		List<User> users = UserRepository.findByName(name);
+		// System.out.println("Repository returned users: " + users);
+		return users;
+		
+	}
 }

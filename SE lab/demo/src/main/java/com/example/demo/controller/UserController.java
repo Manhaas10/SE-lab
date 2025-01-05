@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
@@ -66,8 +67,8 @@ public class UserController {
 		this.UserService.deleteUserById(id);
 		return "redirect:/";
 	}
-	@GetMapping("/searchbyName")
-	public String searchbyName(Long id,Model model){
+	@GetMapping("/searchbyid")
+	public String searchbyid(Long id,Model model){
 		if (id == null) { 
 			throw new IllegalArgumentException("The given id must not be null or empty");
 		}
@@ -75,5 +76,14 @@ public class UserController {
 		model.addAttribute("Users",users);
 		return "search_results";
 	}
+	@GetMapping("/searchbyName")
+	public String searchbyName(@RequestParam("Name") String name,Model model){
+		System.out.println("Searching for name: " + name);
+		List<User> users = UserService.getUserByname(name);
+		// System.out.println("Users found: " + users.size());
+		model.addAttribute("Users", users);
+		return "search_results";
+	}
+
 
 }

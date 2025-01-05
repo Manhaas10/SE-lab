@@ -12,9 +12,15 @@
 
 <body>
 	<div class="container my-2">
-		<form th:action="@{/searchbyName}" method="get"> 
+		<form th:action="@{/searchbyid}" method="get"> 
 			<input type="text" name="id" placeholder="Enter id"> 
 			<input type="submit" value="Search">
+		</form>
+		<br>
+		<form th:action="@{/searchbyName}" method="get"> 
+				<input type="text" name="Name" placeholder="Enter name"> 
+				<input type="submit" value="Search">
+		</form>
 		<h1>Users list</h1>
 
 		<a th:href="@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Add User</a>
