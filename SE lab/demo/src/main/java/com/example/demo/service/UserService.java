@@ -7,7 +7,7 @@ import com.example.demo.model.User;
 public interface UserService {
 	List<User> getAllUsers();
 	void saveUser(User User);
-	User getUserById(long id);
-	void deleteUserById(long id);
+	User getUserById(Long id);
+	void deleteUserById(Long id);
 }
  

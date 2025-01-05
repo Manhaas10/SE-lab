@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,7 @@ public class UserController {
 	
 	
 	@GetMapping("/showFormForUpdate/{id}")
-	public String showFormForUpdate(@PathVariable(value = "id") long id, Model model) {
+	public String showFormForUpdate(@PathVariable(value = "id") Long id, Model model) {
 		
 		// get User from the service
 		User User = UserService.getUserById(id);
@@ -58,10 +60,20 @@ public class UserController {
 	
 	
 	@GetMapping("/deleteUser/{id}")
-	public String deleteUser(@PathVariable (value = "id") long id) {
+	public String deleteUser(@PathVariable (value = "id") Long id) {
 		
 		// call delete User method
 		this.UserService.deleteUserById(id);
 		return "redirect:/";
 	}
+	@GetMapping("/searchbyName")
+	public String searchbyName(Long id,Model model){
+		if (id == null) { 
+			throw new IllegalArgumentException("The given id must not be null or empty");
+		}
+		User users=UserService.getUserById(id);
+		model.addAttribute("Users",users);
+		return "search_results";
+	}
+
 }

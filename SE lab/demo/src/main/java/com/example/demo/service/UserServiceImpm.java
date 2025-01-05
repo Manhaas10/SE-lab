@@ -26,7 +26,7 @@ public class UserServiceImpm implements UserService{
 	}
 
 	@Override
-	public User getUserById(long id) {
+	public User getUserById(Long id) {
 		Optional<User> optional = UserRepository.findById(id);
 		User User = null;
 		if(optional.isPresent()) {
@@ -39,8 +39,7 @@ public class UserServiceImpm implements UserService{
 	}
 
 	@Override
-	public void deleteUserById(long id) {
+	public void deleteUserById(Long id) {
 		this.UserRepository.deleteById(id);
 	}
-
 }
